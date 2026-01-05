@@ -1,0 +1,1 @@
+mimicking structure of https://github.com/CTristan/lobotomy-corporation-mods/blob/develop/CONTRIBUTING.md
