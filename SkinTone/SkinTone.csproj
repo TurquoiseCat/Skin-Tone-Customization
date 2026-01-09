@@ -4,6 +4,10 @@
     <TargetFramework>net4</TargetFramework>
 	  <LangVersion>10.0</LangVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include=".gitignore" />
+  </ItemGroup>
 	<ItemGroup>
 		<Content Include="Info\en\Info.xml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>

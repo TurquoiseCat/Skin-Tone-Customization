@@ -7,66 +7,29 @@ using WorkerSprite;
 
 namespace SkinTone.Patches
 {
-    // for if other mods set head color to stuff then try to set it back to white later
-    [HarmonyPatch(typeof(WorkerSpriteSetter), nameof(WorkerSpriteSetter.SetHeadColor))]
-    public class SetHeadColor
+    // this function would set head and hands back to white, don't let it
+    [HarmonyPatch(typeof(WorkerSpriteSetter), nameof(WorkerSpriteSetter.Apply))]
+    public class Apply
     {
-        static void Prefix(WorkerSpriteSetter __instance, ref UnityEngine.Color c)
+        static void Prefix(WorkerSpriteSetter __instance, ref List<SpineChangeData> data)
         {
-            if (c == UnityEngine.Color.white)
+            AgentModel agentModel = __instance.Model as AgentModel;
+            if (agentModel == null || agentModel._agentName == null)
             {
-                AgentModel agentModel = __instance.Model as AgentModel;
-                if (agentModel == null || agentModel._agentName == null)
+                return;
+            }
+            foreach (SpineChangeData item in data)
+            {
+                if (item.slot == "Head" || item.slot == WorkerBodyRegionKey.L_Hand || item.slot == WorkerBodyRegionKey.R_Hand)
                 {
-                    return;
+                    bool switch_color = (item.regionColor == UnityEngine.Color.white || item.regionColor == null);
+                    if (Harmony_Patch.charaSkinTones.ContainsKey(agentModel._agentName.id) && switch_color)
+                    {
+                        item.isSettedColor = true;
+                        item.regionColor = Harmony_Patch.charaSkinTones[agentModel._agentName.id];
+                    }
                 }
-                if (Harmony_Patch.charaSkinTones.ContainsKey(agentModel._agentName.id))
-                {
-                    c = Harmony_Patch.charaSkinTones[agentModel._agentName.id];
-                }
             }
-        }
-    }
-
-    [HarmonyPatch(typeof(WorkerSpriteSetter), nameof(WorkerSpriteSetter.BasicApply))]
-    public class BasicApply
-    {
-        static void Postfix(WorkerSpriteSetter __instance)
-        {
-            AgentModel agentModel = __instance.Model as AgentModel;
-            if (agentModel == null || agentModel._agentName == null)
-            {
-                return;
-            }
-            common.setSkinTone(agentModel);
-        }
-    }
-
-    [HarmonyPatch(typeof(WorkerSpriteSetter), nameof(WorkerSpriteSetter.BaiscUniqueApply))]
-    public class BasicUniqueApply
-    {
-        static void Postfix(WorkerSpriteSetter __instance)
-        {
-            AgentModel agentModel = __instance.Model as AgentModel;
-            if (agentModel == null || agentModel._agentName == null)
-            {
-                return;
-            }
-            common.setSkinTone(agentModel);
-        }
-    }
-
-    [HarmonyPatch(typeof(WorkerSpriteSetter), nameof(WorkerSpriteSetter.ArmorApply))]
-    public class ArmorApply
-    {
-        static void Postfix(WorkerSpriteSetter __instance)
-        {
-            AgentModel agentModel = __instance.Model as AgentModel;
-            if (agentModel == null || agentModel._agentName == null)
-            {
-                return;
-            }
-            common.setSkinTone(agentModel);
         }
     }
 }

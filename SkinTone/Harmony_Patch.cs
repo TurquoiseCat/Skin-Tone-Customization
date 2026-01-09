@@ -16,7 +16,7 @@ namespace SkinTone
 
         public static Dictionary<int, UnityEngine.Color> charaSkinTones;
 
-        //modified from https://discussions.unity.com/t/simplest-dictionary-serialization-to-a-file/81321/2
+        //dictionary stuff modified from https://discussions.unity.com/t/simplest-dictionary-serialization-to-a-file/81321/2
         private static string savedDataPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/savedData";
         private static string dictionaryName = "PersistentDictionary.txt";
         private static string dictionaryFullPath = savedDataPath + "/" + dictionaryName;
@@ -52,7 +52,6 @@ namespace SkinTone
 
         private static void saveDict()
         {
-            //FileLog.Log("saving dictionary");
             if (charaSkinTones != null)
             {
                 string fileContent = "";
@@ -75,7 +74,6 @@ namespace SkinTone
             Directory.CreateDirectory(savedDataPath);
             if (File.Exists(dictionaryFullPath))
             {
-                //FileLog.Log("loading dictionary");
                 string[] fileContent = File.ReadAllLines(dictionaryFullPath);
 
                 foreach (string line in fileContent)
@@ -97,12 +95,6 @@ namespace SkinTone
                     }
                 }
             }
-            //else
-            //{
-            //    FileLog.Log("cant find dictionary");
-            //}
         }
-
-
     }
 }
