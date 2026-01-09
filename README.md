@@ -11,4 +11,4 @@ You will need to have Basemod installed for this to work. Heres the wiki for tha
 
 Note: Most eyes do not have the white parts filled in, so they may look odd. I have included colored in versions of all the default eyes in the release. Just place all the images in LobotomyCorp_Data\CustomData\Face\Eye_Default.
 
-[Go to Releases](https://github.com/TurquoiseCat/Skin-Tone-Customization/releases)
+To download: [Go to Releases](https://github.com/TurquoiseCat/Skin-Tone-Customization/releases)
