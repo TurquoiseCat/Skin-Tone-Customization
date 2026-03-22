@@ -13,6 +13,7 @@ namespace SkinTone.Patches
     {
         private static void Prefix(CustomizingWindow __instance)
         {
+            if (__instance.CurrentData.agentName == null) { return; }
             bool flag = __instance.CurrentData.agentName.id == common.temp_chosen_id;
             if (flag)
             {
