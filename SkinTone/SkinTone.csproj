@@ -6,16 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include=".gitignore" />
+    <Compile Remove="Info\**" />
+    <EmbeddedResource Remove="Info\**" />
+    <None Remove="Info\**" />
   </ItemGroup>
-	<ItemGroup>
-		<Content Include="Info\en\Info.xml">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="Info\GlobalInfo.xml">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-	</ItemGroup>
 	<ItemGroup>
 	  <Reference Include="0Harmony">
 	    <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\LobotomyCorp\LobotomyCorp_Data\Managed\0Harmony.dll</HintPath>

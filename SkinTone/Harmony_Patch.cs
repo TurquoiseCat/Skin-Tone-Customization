@@ -13,6 +13,7 @@ namespace SkinTone
     public class Harmony_Patch
     {
         public static readonly string mod_name = "SkinToneCustomization";
+        public static readonly string version = "0.1.2";
 
         public static Dictionary<int, UnityEngine.Color> charaSkinTones;
 

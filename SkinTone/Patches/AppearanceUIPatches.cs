@@ -17,7 +17,6 @@ namespace SkinTone.Patches
         {
             common.skin_selected = false;
             instance.HairTitle.text = LocalizeTextDataModel.instance.GetText("Customizing_Hair");
-            instance.palette.OnSetColor(instance.hairColor.CurrentColor);
         }
         static void Prefix(AppearanceUI __instance)
         {
